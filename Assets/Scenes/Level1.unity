@@ -1213,14 +1213,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1148481102108397282, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
-      propertyPath: smooth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1148481102108397282, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
-      propertyPath: smoothTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1148481102872671068, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
       propertyPath: m_RootOrder
       value: 1
