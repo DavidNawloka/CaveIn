@@ -1,9 +1,10 @@
+using CaveIn.Spawning;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CaveIn.Player
+namespace CaveIn.GameplayLoop
 {
     public class Health : MonoBehaviour
     {

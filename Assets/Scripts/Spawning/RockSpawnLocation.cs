@@ -2,29 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockSpawnLocation : MonoBehaviour
+namespace CaveIn.Spawning
 {
-    [SerializeField] RockSize spawnRockSize;
-    [SerializeField] float gizmoRadius = 1f;
-
-    private void OnDrawGizmos()
+    public class RockSpawnLocation : MonoBehaviour
     {
-        if (spawnRockSize == RockSize.Small) Gizmos.color = Color.yellow;
-        if (spawnRockSize == RockSize.Medium) Gizmos.color = new Color(1,.5f,0);
-        if (spawnRockSize == RockSize.Big) Gizmos.color = Color.red;
+        [SerializeField] RockSize spawnRockSize;
+        [SerializeField] float gizmoRadius = 1f;
 
-        Gizmos.DrawSphere(transform.position, gizmoRadius);
+        private void OnDrawGizmos()
+        {
+            if (spawnRockSize == RockSize.Small) Gizmos.color = Color.yellow;
+            if (spawnRockSize == RockSize.Medium) Gizmos.color = new Color(1, .5f, 0);
+            if (spawnRockSize == RockSize.Big) Gizmos.color = Color.red;
+
+            Gizmos.DrawSphere(transform.position, gizmoRadius);
+        }
+
+        public RockSize GetSpawnSize()
+        {
+            return spawnRockSize;
+        }
     }
 
-    public RockSize GetSpawnSize()
+    public enum RockSize
     {
-        return spawnRockSize;
+        Small,
+        Medium,
+        Big
     }
-}
 
-public enum RockSize
-{
-    Small,
-    Medium,
-    Big
 }

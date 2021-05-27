@@ -10,12 +10,15 @@ namespace CaveIn.Spawning
         [SerializeField] GameObject[] rocks;
         [SerializeField] float timeBetweenSpawn = 2f;
         [SerializeField] int maxRocksPerSpawn = 10;
-        [SerializeField] float maxRockForce = 10;
 
         float timer = 0;
         List<RockSpawnLocation> rockSpawnerSmall = new List<RockSpawnLocation>();
         List<RockSpawnLocation> rockSpawnerMedium = new List<RockSpawnLocation>();
         List<RockSpawnLocation> rockSpawnerBig = new List<RockSpawnLocation>();
+
+        List<Vector3> usedSpawnerSmall = new List<Vector3>();
+        List<Vector3> usedSpawnerMedium = new List<Vector3>();
+        List<Vector3> usedSpawnerBig = new List<Vector3>();
         private void Start()
         {
             foreach (Transform child in transform) 
@@ -51,28 +54,74 @@ namespace CaveIn.Spawning
             int randRockIndex = GetRandomNum(0, rocks.Length);
             int randAmountIndex = GetRandomNum(2, maxRocksPerSpawn);
 
+            usedSpawnerSmall.Clear();
+            usedSpawnerMedium.Clear();
+            usedSpawnerBig.Clear();
+
             for (int i = 0; i < randAmountIndex; i++)
             {
                 GameObject rock = rocks[randRockIndex];
-                Vector3 spawnLocation = GetRandomSpawnLocation(rock.GetComponent<Rock>().GetRockSize()); //TODO: During a single spawn only one rock should be spawned at any spawn location (not multiple)
+                Vector3 spawnLocation = GetRandomSpawnLocation(rock.GetComponent<Rock>().GetRockSize());
                 if (spawnLocation == Vector3.zero) return;
 
-                Instantiate(rock, spawnLocation, rock.transform.rotation);
+                GameObject rockInstance = Instantiate(rock, spawnLocation, Quaternion.Euler(GetRandomRotation()));
+                var rigidbody = rockInstance.GetComponent<Rigidbody>();
+                if (rigidbody == null) return;
+
+                rigidbody.AddTorque(new Vector3(GetRandomNum(20, 50f), GetRandomNum(20f, 50f), GetRandomNum(20f, 50f)));
             }
         }
 
         private Vector3 GetRandomSpawnLocation(RockSize rockSize)
         {
-            switch (rockSize)
+            if (rockSize == RockSize.Small)
             {
-                case (RockSize.Small):
-                    return rockSpawnerSmall[GetRandomNum(0, rockSpawnerSmall.Count)].transform.position;
-                case (RockSize.Medium):
-                    return rockSpawnerMedium[GetRandomNum(0, rockSpawnerMedium.Count)].transform.position;
-                case (RockSize.Big):
-                    return rockSpawnerBig[GetRandomNum(0, rockSpawnerBig.Count)].transform.position;
+                Vector3 spawnLocation = rockSpawnerSmall[GetRandomNum(0, rockSpawnerSmall.Count)].transform.position;
+
+                if (usedSpawnerSmall.Count >= rockSpawnerSmall.Count) return Vector3.zero;
+                while (usedSpawnerSmall.Contains(spawnLocation))
+                {
+                    spawnLocation = rockSpawnerSmall[GetRandomNum(0, rockSpawnerSmall.Count)].transform.position;
+                }
+
+                usedSpawnerSmall.Add(spawnLocation);
+                return spawnLocation;
+
             }
-            return Vector3.zero;
+            else if (rockSize == RockSize.Medium)
+            {
+                Vector3 spawnLocation = rockSpawnerMedium[GetRandomNum(0, rockSpawnerMedium.Count)].transform.position;
+
+                if (usedSpawnerMedium.Count >= rockSpawnerMedium.Count) return Vector3.zero;
+                while (usedSpawnerMedium.Contains(spawnLocation))
+                {
+                    spawnLocation = rockSpawnerMedium[GetRandomNum(0, rockSpawnerMedium.Count)].transform.position;
+                }
+
+                usedSpawnerMedium.Add(spawnLocation);
+                return spawnLocation;
+            }
+            else
+            {
+                Vector3 spawnLocation = rockSpawnerBig[GetRandomNum(0, rockSpawnerBig.Count)].transform.position;
+
+                if (usedSpawnerBig.Count >= rockSpawnerBig.Count) return Vector3.zero;
+                while (usedSpawnerBig.Contains(spawnLocation))
+                {
+                    spawnLocation = rockSpawnerBig[GetRandomNum(0, rockSpawnerBig.Count)].transform.position;
+                }
+
+                usedSpawnerBig.Add(spawnLocation);
+                return spawnLocation;
+            }
+        }
+
+        private Vector3 GetRandomRotation()
+        {
+            return new Vector3(
+                GetRandomNum(0, 360f),
+                GetRandomNum(0, 360f),
+                GetRandomNum(0, 360f));
         }
 
         private int GetRandomNum(int min,int max)
