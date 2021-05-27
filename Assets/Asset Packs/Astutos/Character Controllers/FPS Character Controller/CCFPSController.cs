@@ -18,13 +18,15 @@ namespace Astutos.CCFPS
         [Tooltip("LayerMask ground check checks for")] [SerializeField] LayerMask groundMask;
 
         bool isGrounded = true;
+        Animator animator;
         CharacterController characterController;
         Vector3 velocity;
         Vector3 currentVelocity;
         float speed;
 
-        void Start()
+        void Awake()
         {
+            animator = GetComponent<Animator>();
             characterController = GetComponent<CharacterController>();
         }
 
@@ -75,10 +77,12 @@ namespace Astutos.CCFPS
             }
             else if (Input.GetKey(KeyCode.LeftShift))
             {
+                animator.SetBool("Run", true);
                 speed = sprintSpeed;
             }
             else
             {
+                animator.SetBool("Run", false);
                 speed = walkSpeed;
             }
         }

@@ -8,9 +8,13 @@ namespace CaveIn.Spawning
     public class RockSpawner : MonoBehaviour
     {
         [SerializeField] GameObject[] rocks;
-        [SerializeField] float timeBetweenSpawn = 2f;
+        [SerializeField] Transform rockParent;
+        
         [SerializeField] int maxRocksPerSpawn = 10;
+        [SerializeField] int minRocksPerSpawn = 4;
 
+        float timeBetweenSpawn = 5f;
+        float currentTimeBetweenSpawn;
         float timer = 0;
         List<RockSpawnLocation> rockSpawnerSmall = new List<RockSpawnLocation>();
         List<RockSpawnLocation> rockSpawnerMedium = new List<RockSpawnLocation>();
@@ -21,6 +25,7 @@ namespace CaveIn.Spawning
         List<Vector3> usedSpawnerBig = new List<Vector3>();
         private void Start()
         {
+            currentTimeBetweenSpawn = timeBetweenSpawn;
             foreach (Transform child in transform) 
             {
                 RockSpawnLocation spawnLocation = child.GetComponent<RockSpawnLocation>();
@@ -41,9 +46,10 @@ namespace CaveIn.Spawning
         }
         private void Update()
         {
-            if (timer > timeBetweenSpawn)
+            if (timer > currentTimeBetweenSpawn)
             {
                 timer = 0;
+                currentTimeBetweenSpawn = GetRandomNum(timeBetweenSpawn * .95f, timeBetweenSpawn * 1.05f);
                 SpawnRocks();
             }
             timer += Time.deltaTime;
@@ -52,7 +58,7 @@ namespace CaveIn.Spawning
         private void SpawnRocks()
         {
             int randRockIndex = GetRandomNum(0, rocks.Length);
-            int randAmountIndex = GetRandomNum(2, maxRocksPerSpawn);
+            int randAmountIndex = GetRandomNum(minRocksPerSpawn, maxRocksPerSpawn);
 
             usedSpawnerSmall.Clear();
             usedSpawnerMedium.Clear();
@@ -64,7 +70,7 @@ namespace CaveIn.Spawning
                 Vector3 spawnLocation = GetRandomSpawnLocation(rock.GetComponent<Rock>().GetRockSize());
                 if (spawnLocation == Vector3.zero) return;
 
-                GameObject rockInstance = Instantiate(rock, spawnLocation, Quaternion.Euler(GetRandomRotation()));
+                GameObject rockInstance = Instantiate(rock, spawnLocation, Quaternion.Euler(GetRandomRotation()),rockParent);
                 var rigidbody = rockInstance.GetComponent<Rigidbody>();
                 if (rigidbody == null) return;
 
@@ -132,6 +138,13 @@ namespace CaveIn.Spawning
         private float GetRandomNum(float min, float max)
         {
             return UnityEngine.Random.Range(min, max);
+        }
+
+        public void UpdateSpawnValues(float timeBetweenSpawn,int minRocksPerSpawn, int maxRocksPerSpawn)
+        {
+            this.timeBetweenSpawn = timeBetweenSpawn;
+            this.minRocksPerSpawn = minRocksPerSpawn;
+            this.maxRocksPerSpawn = maxRocksPerSpawn;
         }
     }
 

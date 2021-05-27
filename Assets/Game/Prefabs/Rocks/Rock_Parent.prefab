@@ -60,3 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d64b2ca8d3a9024981aacf54185af4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockSize: 0
+  maxDamage: 0
+  minDamage: 0
+  startDeathParticles: {fileID: 6499759802162185236, guid: e4401553fe7653d4092eb06377684929, type: 3}

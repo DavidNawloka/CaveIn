@@ -9,6 +9,14 @@ namespace CaveIn.Spawning
         [SerializeField] RockSize rockSize;
         [SerializeField] float maxDamage;
         [SerializeField] float minDamage;
+        [SerializeField] GameObject startDeathParticles;
+        private void OnEnable()
+        {
+            if (startDeathParticles == null) return;
+            SpawnParticles();
+        }
+
+       
 
         public RockSize GetRockSize()
         {
@@ -20,7 +28,16 @@ namespace CaveIn.Spawning
         }
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Ground")) Destroy(gameObject);
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                Destroy(gameObject,.5f);
+            }
+                
+        }
+        private void SpawnParticles()
+        {
+            GameObject particles = Instantiate(startDeathParticles, transform.position, Quaternion.identity);
+            Destroy(particles, 1.5f);
         }
     }
 }
