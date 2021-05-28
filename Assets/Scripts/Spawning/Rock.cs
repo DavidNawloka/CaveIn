@@ -24,7 +24,7 @@ namespace CaveIn.Spawning
         private void OnEnable()
         {
             if (startDeathParticles != null) SpawnParticles();
-            if (spawnSounds.Length != 0) StartSounds(spawnSounds);
+            if (spawnSounds.Length != 0) PlaySound(spawnSounds);
             
         }
         public RockSize GetRockSize()
@@ -39,7 +39,7 @@ namespace CaveIn.Spawning
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
-                if (hitSounds.Length != 0) StartSounds(hitSounds);
+                if (hitSounds.Length != 0) PlaySound(hitSounds);
                 StartCoroutine(MuteAudioSource());
                 Destroy(gameObject, timeAfterHit);
             }
@@ -63,7 +63,7 @@ namespace CaveIn.Spawning
             GameObject particles = Instantiate(startDeathParticles, transform.position, Quaternion.identity);
             Destroy(particles, 1.5f);
         }
-        private void StartSounds(AudioClip[] audioArray)
+        private void PlaySound(AudioClip[] audioArray)
         {
             int randNum = UnityEngine.Random.Range(0, audioArray.Length);
             audioSource.PlayOneShot(audioArray[randNum]);

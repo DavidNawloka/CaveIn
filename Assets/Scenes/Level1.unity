@@ -9802,10 +9802,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1148481102872671071, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
-      propertyPath: sprintSpeed
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 3390250783703585060, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
       propertyPath: interactionPoint
       value: 
