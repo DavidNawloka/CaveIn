@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,10 +66,21 @@ namespace Astutos.CCFPS
             float moveZ = Input.GetAxis("Vertical");
 
             Vector3 motion = transform.forward * moveZ + transform.right * moveX;
+            UpdateAnimator(motion);
             motion = Vector3.ClampMagnitude(motion, 1f);
             characterController.Move(motion * Time.deltaTime * speed);
             currentVelocity = characterController.velocity;
         }
+
+        private void UpdateAnimator(Vector3 motion)
+        {
+            if(motion.magnitude > 0.1) animator.SetBool("Run", true);
+            else
+            {
+                animator.SetBool("Run", false);
+            }
+        }
+
         private void UpdateSpeed()
         {
             if (!isGrounded)
@@ -77,12 +89,10 @@ namespace Astutos.CCFPS
             }
             else if (Input.GetKey(KeyCode.LeftShift))
             {
-                animator.SetBool("Run", true);
                 speed = sprintSpeed;
             }
             else
             {
-                animator.SetBool("Run", false);
                 speed = walkSpeed;
             }
         }
