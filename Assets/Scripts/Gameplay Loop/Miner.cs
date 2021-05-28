@@ -10,15 +10,18 @@ namespace CaveIn.GameplayLoop
         [SerializeField] RectTransform interactionPoint;
         [SerializeField] float maxRaycastDistance = 2;
         [SerializeField] LayerMask raycastFilterLayer;
+        [SerializeField] AudioClip[] pickaxeHitSounds;
 
         GameDifficulty gameDifficulty;
         Animator animator;
+        AudioSource audioSource;
 
         private int gold;
         private int silver;
         float timer;
         private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
             gameDifficulty = FindObjectOfType<GameDifficulty>();
         }
@@ -71,5 +74,11 @@ namespace CaveIn.GameplayLoop
 
             timer += Time.deltaTime;
         }
+        public void PickaxeHit() // Animation Event
+        {
+            int randNum = UnityEngine.Random.Range(0, pickaxeHitSounds.Length);
+            audioSource.PlayOneShot(pickaxeHitSounds[randNum]);
+        }
+        
     }
 }
