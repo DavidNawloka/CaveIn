@@ -77,7 +77,7 @@ namespace CaveIn.GameplayLoop
         public void PickaxeHit() // Animation Event
         {
             int randNum = UnityEngine.Random.Range(0, pickaxeHitSounds.Length);
-            audioSource.PlayOneShot(pickaxeHitSounds[randNum]);
+            audioSource.PlayOneShot(pickaxeHitSounds[randNum]); // TODO: Update mining sound
         }
         
     }

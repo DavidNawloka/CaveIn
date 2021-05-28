@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb1a294bebb5ab4080fb6b5e17b1647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1000
+  sensitivity: 2
   playerBody: {fileID: 1148481102872671068}
   smooth: 1
   smoothTime: 1
@@ -433,6 +433,13 @@ MonoBehaviour:
   raycastFilterLayer:
     serializedVersion: 2
     m_Bits: 8
+  pickaxeHitSounds:
+  - {fileID: 8300000, guid: 2427cca0aa9d1cc4fbe03d75855bd3b8, type: 3}
+  - {fileID: 8300000, guid: 59f995ed719c06f4c945576084063b55, type: 3}
+  - {fileID: 8300000, guid: 11b519282f1cad54aa20d22778d0000c, type: 3}
+  - {fileID: 8300000, guid: 43b8fe3f2d8db7148a2c843bda01d97c, type: 3}
+  - {fileID: 8300000, guid: 33cefc9694492844fb939a09d5d8c94c, type: 3}
+  - {fileID: 8300000, guid: 7c58709151ec0a04a91fd741d097a0c6, type: 3}
 --- !u!95 &3603110061180416361
 Animator:
   serializedVersion: 3
@@ -508,7 +515,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
