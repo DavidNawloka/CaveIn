@@ -26,20 +26,19 @@ namespace CaveIn.Spawning
         private void Start()
         {
             currentTimeBetweenSpawn = timeBetweenSpawn;
-            foreach (Transform child in transform) 
+            foreach (RockSpawnLocation spawner in FindObjectsOfType<RockSpawnLocation>()) 
             {
-                RockSpawnLocation spawnLocation = child.GetComponent<RockSpawnLocation>();
 
-                switch (spawnLocation.GetSpawnSize())
+                switch (spawner.GetSpawnSize())
                 {
                     case (RockSize.Small):
-                        rockSpawnerSmall.Add(spawnLocation);
+                        rockSpawnerSmall.Add(spawner);
                         break;
                     case (RockSize.Medium):
-                        rockSpawnerMedium.Add(spawnLocation);
+                        rockSpawnerMedium.Add(spawner);
                         break;
                     case (RockSize.Big):
-                        rockSpawnerBig.Add(spawnLocation);
+                        rockSpawnerBig.Add(spawner);
                         break;
                 }
             }

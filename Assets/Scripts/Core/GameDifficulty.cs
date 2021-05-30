@@ -17,7 +17,7 @@ namespace CaveIn.Core
         int currentDifficultyIndex = 0;
         private void Awake()
         {
-            rockSpawner = FindObjectOfType<RockSpawner>();
+            rockSpawner = GetComponent<RockSpawner>();
             UpdateDifficulty();
         }
         private void Update()
