@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CaveIn.Core
 {
@@ -12,6 +13,8 @@ namespace CaveIn.Core
         [SerializeField] float difficultyIncreaseTime = 10f;
 
         RockSpawner rockSpawner;
+
+        [HideInInspector] public UnityEvent<int,int> OnDifficultyUpdate;
 
         float timer = 0;
         int currentDifficultyIndex = 0;
@@ -35,7 +38,7 @@ namespace CaveIn.Core
         {
             if (currentDifficultyIndex >= difficultyLevels.Length || currentDifficultyIndex < 0) return;
 
-            print(currentDifficultyIndex);
+            OnDifficultyUpdate.Invoke(currentDifficultyIndex,difficultyLevels.Length);
 
             DifficultyLevel currentLevel = difficultyLevels[currentDifficultyIndex];
             rockSpawner.UpdateSpawnValues(currentLevel.timeBetweenRockSpawn, currentLevel.minRocksPerSpawn, currentLevel.maxRocksPerSpawn);

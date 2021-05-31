@@ -11,6 +11,7 @@ namespace CaveIn.GameplayLoop
         [SerializeField] float maxRaycastDistance = 2;
         [SerializeField] LayerMask raycastFilterLayer;
         [SerializeField] AudioClip[] pickaxeHitSounds;
+        [Range(0,1f)][SerializeField] float volume = 1;
 
         GameDifficulty gameDifficulty;
         Animator animator;
@@ -77,7 +78,7 @@ namespace CaveIn.GameplayLoop
         public void PickaxeHit() // Animation Event
         {
             int randNum = UnityEngine.Random.Range(0, pickaxeHitSounds.Length);
-            audioSource.PlayOneShot(pickaxeHitSounds[randNum]); // TODO: Update mining sound
+            audioSource.PlayOneShot(pickaxeHitSounds[randNum],volume); // TODO: Update mining sound
         }
         
     }

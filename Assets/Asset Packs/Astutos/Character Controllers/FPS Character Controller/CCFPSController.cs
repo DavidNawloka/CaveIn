@@ -11,16 +11,20 @@ namespace Astutos.CCFPS
         [Tooltip("Speed in m/s when not sprinting")] public float walkSpeed = 20f;
         [Tooltip("Speed in m/s when sprinting")] public float sprintSpeed = 15f;
         [Tooltip("Speed in m/s when jumping")] [SerializeField] float jumpSpeed = 10f;
-        [SerializeField] AudioClip[] runSounds;
+        
+
         [Header("Jump Related")]
         [Tooltip("% amount of how much current velocity is being taken into account when starting to jump")] [SerializeField] float jumpVelocityInfluence = .5f;
         [Tooltip("in m/s²")] [SerializeField] float gravity = -9.81f;
         [Tooltip("in m")] [SerializeField] float jumpHeight = 5f;
         [Tooltip("Radius of ground check sphere")] [SerializeField] float groundCheckDistance = .4f;
         [Tooltip("LayerMask ground check checks for")] [SerializeField] LayerMask groundMask;
+
+        [Header("Sound Related")]
+        [Range(0f,1f)][SerializeField] float volume = 1;
+        [SerializeField] AudioClip[] runSounds;
         [SerializeField] AudioClip[] jumpStartSounds;
         [SerializeField] AudioClip[] jumpEndSounds;
-
         AudioSource audioSource;
         Animator animator;
         CharacterController characterController;
@@ -132,7 +136,7 @@ namespace Astutos.CCFPS
             if (audioSource.isPlaying) return;
 
             int randNum = UnityEngine.Random.Range(0, audioArray.Length);
-            audioSource.PlayOneShot(audioArray[randNum]);
+            audioSource.PlayOneShot(audioArray[randNum],volume);
         }
 
     }
