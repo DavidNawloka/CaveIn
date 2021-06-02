@@ -441,7 +441,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9e40353547090104ba1f2c129693206a, type: 3}
   - {fileID: 8300000, guid: acf8b7835064df74b8dd58d806e86616, type: 3}
   - {fileID: 8300000, guid: 395f95be527cde04e99e3b0844258427, type: 3}
-  volume: 0.5
+  volume: 0.6
+  pitch: 1.4
+  goldText: {fileID: 0}
+  silverText: {fileID: 0}
 --- !u!95 &3603110061180416361
 Animator:
   serializedVersion: 3

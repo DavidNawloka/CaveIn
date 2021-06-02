@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CaveIn.Core;
+using TMPro;
+using System;
 
 namespace CaveIn.GameplayLoop
 {
@@ -12,6 +14,9 @@ namespace CaveIn.GameplayLoop
         [SerializeField] LayerMask raycastFilterLayer;
         [SerializeField] AudioClip[] pickaxeHitSounds;
         [Range(0,1f)][SerializeField] float volume = 1;
+        [SerializeField] float pitch = 1;
+        [SerializeField] TextMeshProUGUI goldText;
+        [SerializeField] TextMeshProUGUI silverText;
 
         GameDifficulty gameDifficulty;
         Animator animator;
@@ -25,6 +30,10 @@ namespace CaveIn.GameplayLoop
             audioSource = GetComponent<AudioSource>();
             animator = GetComponent<Animator>();
             gameDifficulty = FindObjectOfType<GameDifficulty>();
+        }
+        private void Start()
+        {
+            UpdateUI();
         }
         private void Update()
         {
@@ -70,15 +79,25 @@ namespace CaveIn.GameplayLoop
                     gameDifficulty.IncreaseDifficulty(-1);
                     ore.Destroy();
                 }
+                UpdateUI();
                 timer = 0;
             }
 
             timer += Time.deltaTime;
         }
+
+        private void UpdateUI()
+        {
+            silverText.text = silver.ToString();
+            goldText.text = gold.ToString();
+        }
+
         public void PickaxeHit() // Animation Event
         {
             int randNum = UnityEngine.Random.Range(0, pickaxeHitSounds.Length);
+            audioSource.pitch = pitch;
             audioSource.PlayOneShot(pickaxeHitSounds[randNum],volume); // TODO: Update mining sound
+            audioSource.pitch = 1;
         }
         
     }
