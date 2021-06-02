@@ -1,4 +1,5 @@
 using CaveIn.Spawning;
+using CaveIn.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,8 +16,11 @@ namespace CaveIn.GameplayLoop
 
         [HideInInspector] public UnityEvent<float,float> OnHealthUpdate;
 
+        LevelUI levelUIManager;
+
         private void Start()
         {
+            levelUIManager = FindObjectOfType<LevelUI>();
             currentHealth = initialHealth;
         }
         private void OnCollisionEnter(Collision collision)
@@ -40,7 +44,7 @@ namespace CaveIn.GameplayLoop
 
         private void Die()
         {
-            // TODO: Handle Game Over
+            levelUIManager.Death();
         }
     }
 }

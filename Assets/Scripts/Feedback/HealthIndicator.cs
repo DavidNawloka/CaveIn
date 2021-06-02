@@ -13,6 +13,7 @@ namespace CaveIn.Feedback
         [SerializeField] float pulseIncreasePercent = 10;
         [SerializeField] float pulseLengthBeginning = 1;
         [SerializeField] float pulseLengthDecrease= .2f;
+        [SerializeField] float minPulseLength = .1f;
 
         Health health;
         bool shouldPulseStart = true;
@@ -35,7 +36,6 @@ namespace CaveIn.Feedback
             {
                 shouldPulseStart = false;
                 lastHealth = currentHealth;
-                print("helo 2");
                 StartCoroutine(HealthPulse());
             }
             if (!shouldPulseStart)
@@ -43,7 +43,7 @@ namespace CaveIn.Feedback
                 if((lastHealth-currentHealth)/initialHealth >= pulseIncreasePercent / 100)
                 {
                     currentPulseLength -= pulseLengthDecrease;
-                    print("Healllo");
+                    if (currentPulseLength <= minPulseLength) currentPulseLength = minPulseLength;
                 }
             }
             
@@ -59,9 +59,8 @@ namespace CaveIn.Feedback
             redImage.enabled = true;
             while (true)
             {
-                redImage.color = new Color(redImage.color.r, redImage.color.g, redImage.color.b, timer / (currentPulseLength/2) * alpha); // timer / (currentPulseLength/2) get bigger than 1
-                //print(timer);
-                if (timer >= pulseLengthBeginning/2) factor = -1;
+                redImage.color = new Color(redImage.color.r, redImage.color.g, redImage.color.b, Mathf.Clamp(timer / (currentPulseLength/2) * alpha,0,alpha));
+                if (timer >= currentPulseLength/2) factor = -1;
                 if (timer <= 0) factor = 1;
                 timer += Time.deltaTime * factor;
 

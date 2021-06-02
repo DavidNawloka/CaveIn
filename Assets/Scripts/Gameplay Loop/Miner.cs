@@ -14,6 +14,8 @@ namespace CaveIn.GameplayLoop
         [SerializeField] LayerMask raycastFilterLayer;
         [SerializeField] AudioClip[] pickaxeHitSounds;
         [Range(0,1f)][SerializeField] float volume = 1;
+
+
         [SerializeField] float pitch = 1;
         [SerializeField] TextMeshProUGUI goldText;
         [SerializeField] TextMeshProUGUI silverText;
@@ -22,8 +24,8 @@ namespace CaveIn.GameplayLoop
         Animator animator;
         AudioSource audioSource;
 
-        private int gold;
-        private int silver;
+        private int goldAmount;
+        private int silverAmount;
         float timer;
         private void Awake()
         {
@@ -31,6 +33,7 @@ namespace CaveIn.GameplayLoop
             animator = GetComponent<Animator>();
             gameDifficulty = FindObjectOfType<GameDifficulty>();
         }
+
         private void Start()
         {
             UpdateUI();
@@ -61,6 +64,23 @@ namespace CaveIn.GameplayLoop
             }
         }
 
+        public int GetMaxGoldAmount()
+        {
+            int restGold = 0;
+            foreach(Ore ore in FindObjectsOfType<Ore>())
+            {
+                if (ore.GetIsGold())
+                {
+                    restGold++;
+                }
+            }
+            return restGold + goldAmount;
+        }
+        public int GetGoldAmount()
+        {
+            return goldAmount;
+        }
+
         private void StartMining(Ore ore)
         {
             animator.SetBool("Mine", true);
@@ -70,12 +90,12 @@ namespace CaveIn.GameplayLoop
                 animator.SetBool("Mine", false);
                 if (ore.GetIsGold())
                 {
-                    gold += 1;
+                    goldAmount += 1;
                     ore.Destroy();
                 }
                 else
                 {
-                    silver += 1;
+                    silverAmount += 1;
                     gameDifficulty.IncreaseDifficulty(-1);
                     ore.Destroy();
                 }
@@ -88,8 +108,8 @@ namespace CaveIn.GameplayLoop
 
         private void UpdateUI()
         {
-            silverText.text = silver.ToString();
-            goldText.text = gold.ToString();
+            silverText.text = silverAmount.ToString();
+            goldText.text = goldAmount.ToString();
         }
 
         public void PickaxeHit() // Animation Event

@@ -289,13 +289,14 @@ GameObject:
   - component: {fileID: 1148481102872671071}
   - component: {fileID: 5654552426114625718}
   - component: {fileID: 6756112234023347798}
+  - component: {fileID: 521602454}
   - component: {fileID: 3390250783703585060}
   - component: {fileID: 3603110061180416361}
   - component: {fileID: 1396784766}
   - component: {fileID: 790531385}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -418,7 +419,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07e8fa93043f724a98a953286f4b2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 100
+  initialHealth: 20
+  OnHealthUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &521602454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148481102872671069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0525fbb06246c74e890766e7426cc9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redImage: {fileID: 0}
+  pulseBeginningPercent: 70
+  pulseIncreasePercent: 15
+  pulseLengthBeginning: 5.5
+  pulseLengthDecrease: 1.25
+  minPulseLength: 0.5
 --- !u!114 &3390250783703585060
 MonoBehaviour:
   m_ObjectHideFlags: 0

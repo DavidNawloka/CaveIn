@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace CaveIn.Feedback
+namespace CaveIn.UI
 {
     public class MainMenuUI : MonoBehaviour
     {
