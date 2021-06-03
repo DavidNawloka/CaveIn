@@ -23,6 +23,10 @@ namespace CaveIn.Spawning
         List<Vector3> usedSpawnerSmall = new List<Vector3>();
         List<Vector3> usedSpawnerMedium = new List<Vector3>();
         List<Vector3> usedSpawnerBig = new List<Vector3>();
+        private void Awake()
+        {
+            Time.timeScale = 1;
+        }
         private void Start()
         {
             currentTimeBetweenSpawn = timeBetweenSpawn;

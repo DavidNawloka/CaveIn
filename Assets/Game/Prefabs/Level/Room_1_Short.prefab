@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233686413410505939, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.557999
+      value: -6.57
       objectReference: {fileID: 0}
     - target: {fileID: 2233686413410505939, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233686413410505939, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.2639995
+      value: 7.49
       objectReference: {fileID: 0}
     - target: {fileID: 2233686413410505939, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -471,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7243853842380641701, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: spawnRockSize
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}

@@ -44,6 +44,7 @@ namespace CaveIn.Feedback
                 {
                     currentPulseLength -= pulseLengthDecrease;
                     if (currentPulseLength <= minPulseLength) currentPulseLength = minPulseLength;
+                    lastHealth = currentHealth;
                 }
             }
             

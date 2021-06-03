@@ -16,6 +16,7 @@ namespace CaveIn.Spawning
         [SerializeField] AudioClip[] hitSounds;
 
         AudioSource audioSource;
+        bool canHurt = true;
 
         private void Awake()
         {
@@ -27,6 +28,12 @@ namespace CaveIn.Spawning
             if (spawnSounds.Length != 0) PlaySound(spawnSounds);
             
         }
+
+        public bool CanHurt()
+        {
+            return canHurt; 
+        }
+
         public RockSize GetRockSize()
         {
             return rockSize;
@@ -40,6 +47,7 @@ namespace CaveIn.Spawning
             if (collision.gameObject.CompareTag("Ground"))
             {
                 if (hitSounds.Length != 0) PlaySound(hitSounds);
+                canHurt = false;
                 StartCoroutine(MuteAudioSource());
                 Destroy(gameObject, timeAfterHit);
             }

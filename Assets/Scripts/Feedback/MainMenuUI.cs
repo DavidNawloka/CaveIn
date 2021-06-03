@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using TMPro;
 
 namespace CaveIn.UI
 {
@@ -9,6 +10,12 @@ namespace CaveIn.UI
     {
         [SerializeField] AudioMixer rocksAudioMixer;
         [SerializeField] AudioMixer playerAudioMixer;
+        [SerializeField] TMP_Dropdown qualityDropdown;
+        private void Start()
+        {
+            qualityDropdown.value = QualitySettings.GetQualityLevel();
+            qualityDropdown.RefreshShownValue();
+        }
         public void SetRocksVolume(float volume)
         {
             rocksAudioMixer.SetFloat("masterVolume", volume);
@@ -19,6 +26,7 @@ namespace CaveIn.UI
         }
         public void SetPlayerVolume(float volume)
         {
+            
             playerAudioMixer.SetFloat("masterVolume", volume);
             if (volume == -30f)
             {

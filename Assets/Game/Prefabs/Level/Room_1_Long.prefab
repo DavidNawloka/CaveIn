@@ -539,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7243853842380641701, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}
       propertyPath: spawnRockSize
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08cc7bb23dae12444a47b94479a9617e, type: 3}

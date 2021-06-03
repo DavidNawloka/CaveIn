@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a2690fffa8b724f814b82be47ae7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 14
-  sprintSpeed: 14
+  walkSpeed: 12
+  sprintSpeed: 12
   jumpSpeed: 4
   jumpVelocityInfluence: 0.5
   gravity: -20
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07e8fa93043f724a98a953286f4b2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 20
+  initialHealth: 50
   OnHealthUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -436,11 +436,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redImage: {fileID: 0}
-  pulseBeginningPercent: 70
-  pulseIncreasePercent: 15
+  pulseBeginningPercent: 50
+  pulseIncreasePercent: 7
   pulseLengthBeginning: 5.5
   pulseLengthDecrease: 1.25
-  minPulseLength: 0.5
+  minPulseLength: 0.25
 --- !u!114 &3390250783703585060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 0}
-  maxRaycastDistance: 2
+  maxRaycastDistance: 3
   raycastFilterLayer:
     serializedVersion: 2
     m_Bits: 8
