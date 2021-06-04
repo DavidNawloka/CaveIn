@@ -3368,9 +3368,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathUI: {fileID: 525678578}
   WinUI: {fileID: 317736403}
+  TutorialUI: {fileID: 0}
   winGoldText: {fileID: 1342850307}
   HUD: {fileID: 276493345}
   OnPause:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnpause:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1122566276 stripped
@@ -6941,6 +6945,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1641587453275398571, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8427584941291956526, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7097,7 +7105,7 @@ PrefabInstance:
       objectReference: {fileID: 96337021}
     - target: {fileID: 6756112234023347798, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}
       propertyPath: initialHealth
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 479c8cd4df81f854eb00572d40880f12, type: 3}

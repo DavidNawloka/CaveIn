@@ -65,7 +65,8 @@ MonoBehaviour:
   timeAfterHit: 0.5
   maxDamage: 0
   minDamage: 0
-  startDeathParticles: {fileID: 6499759802162185236, guid: e4401553fe7653d4092eb06377684929, type: 3}
+  startFallParticles: {fileID: 6499759802162185236, guid: e4401553fe7653d4092eb06377684929, type: 3}
+  groundHitParticles: {fileID: 8698416674629400021, guid: 01a11b3a7bc2e74419a93a63b5807dd4, type: 3}
   spawnSounds:
   - {fileID: 8300000, guid: eac3de61e44952044b6150239143def8, type: 3}
   - {fileID: 8300000, guid: 4af42466bb3d8e6498307cf006f5f0b0, type: 3}

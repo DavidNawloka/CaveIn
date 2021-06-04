@@ -4238,9 +4238,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathUI: {fileID: 525678578}
   WinUI: {fileID: 317736403}
+  TutorialUI: {fileID: 0}
   winGoldText: {fileID: 1342850307}
   HUD: {fileID: 276493345}
   OnPause:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnpause:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1122566276 stripped
@@ -8080,6 +8084,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 789734211}
     m_Modifications:
+    - target: {fileID: 317736403, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 581235112, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193456589, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193456589, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200
+      objectReference: {fileID: 0}
     - target: {fileID: 1272316404257325603, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8172,9 +8192,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1641587453275398571, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8427584941291956526, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8993471019736212628, guid: 669e5981291d3b2408ce6ec778b91263, type: 3}
       propertyPath: m_Color.a

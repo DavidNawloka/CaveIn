@@ -12,9 +12,14 @@ namespace CaveIn.Core
         {
             if(other.tag == "Player")
             {
-                Miner miner = other.gameObject.GetComponent<Miner>();
-                FindObjectOfType<LevelUI>().Win(miner.GetGoldAmount(), miner.GetMaxGoldAmount());
+                Win(other);
             }
+        }
+
+        private static void Win(Collider other)
+        {
+            Miner miner = other.gameObject.GetComponent<Miner>();
+            FindObjectOfType<LevelUI>().Win(miner.GetGoldAmount(), miner.GetMaxGoldAmount());
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using CaveIn.Core;
+using UnityEngine.SceneManagement;
 
 namespace CaveIn.UI
 {
@@ -10,11 +12,13 @@ namespace CaveIn.UI
     {
         [SerializeField] GameObject DeathUI;
         [SerializeField] GameObject WinUI;
+        [SerializeField] GameObject TutorialUI;
         [SerializeField] TextMeshProUGUI winGoldText;
         [SerializeField] GameObject HUD;
 
 
         [HideInInspector] public UnityEvent OnPause;
+        [HideInInspector] public UnityEvent OnUnpause;
 
         private void Awake()
         {
@@ -22,7 +26,14 @@ namespace CaveIn.UI
         }
         private void Start()
         {
-            DisableAnythingElse();
+            if(SceneManager.GetActiveScene().buildIndex == 1 && FindObjectOfType<ProgressTracker>().levelProgress[1] == 0)
+            {
+                Pause();
+            }
+            else
+            {
+                DisableAnythingElse();
+            }
         }
         public void Death()
         {
@@ -33,7 +44,26 @@ namespace CaveIn.UI
         {
             DisableHud();
             winGoldText.text = goldAmount + "/" + maxGold;
+
+            ProgressTracker progressTracker = FindObjectOfType<ProgressTracker>();
+
+            if(progressTracker.levelProgress[SceneManager.GetActiveScene().buildIndex] < goldAmount)
+            {
+                progressTracker.levelProgress[SceneManager.GetActiveScene().buildIndex] = goldAmount;
+            }
+            if(goldAmount >= 6)
+            {
+                progressTracker.levelProgress[(SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings] = 0;
+            }
             WinUI.SetActive(true);
+        }
+
+        public void Unpause()
+        {
+            Time.timeScale = 1;
+            OnUnpause.Invoke();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void DisableHud()
@@ -54,6 +84,7 @@ namespace CaveIn.UI
         {
             WinUI.SetActive(false);
             DeathUI.SetActive(false);
+            if(TutorialUI != null) TutorialUI.SetActive(false);
             HUD.SetActive(true);
         }
     }

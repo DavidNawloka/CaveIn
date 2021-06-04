@@ -26,7 +26,7 @@ namespace CaveIn.GameplayLoop
         private void OnCollisionEnter(Collision collision)
         {
             Rock rock = collision.gameObject.GetComponent<Rock>();
-            if (rock != null && rock.CanHurt())
+            if (rock != null && rock.GetComponent<Rigidbody>().velocity.magnitude >= 1)
             {
                 currentHealth -= rock.GetDamage();
                 OnHealthUpdate.Invoke(currentHealth, initialHealth);

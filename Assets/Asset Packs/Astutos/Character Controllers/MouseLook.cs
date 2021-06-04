@@ -19,6 +19,7 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
 
         FindObjectOfType<LevelUI>().OnPause.AddListener(Pause);
+        FindObjectOfType<LevelUI>().OnUnpause.AddListener(Unpause);
     }
 
     void Update()
@@ -45,5 +46,10 @@ public class MouseLook : MonoBehaviour
     private void Pause()
     {
         isPaused = true;
+    }
+
+    private void Unpause()
+    {
+        isPaused = false;
     }
 }

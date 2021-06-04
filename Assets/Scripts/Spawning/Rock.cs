@@ -11,12 +11,12 @@ namespace CaveIn.Spawning
         [SerializeField] float timeAfterHit = .5f;
         [SerializeField] float maxDamage;
         [SerializeField] float minDamage;
-        [SerializeField] GameObject startDeathParticles;
+        [SerializeField] GameObject startFallParticles;
+        [SerializeField] GameObject groundHitParticles;
         [SerializeField] AudioClip[] spawnSounds;
         [SerializeField] AudioClip[] hitSounds;
 
         AudioSource audioSource;
-        bool canHurt = true;
 
         private void Awake()
         {
@@ -24,14 +24,9 @@ namespace CaveIn.Spawning
         }
         private void OnEnable()
         {
-            if (startDeathParticles != null) SpawnParticles();
+            if (startFallParticles != null) SpawnParticles(startFallParticles);
             if (spawnSounds.Length != 0) PlaySound(spawnSounds);
             
-        }
-
-        public bool CanHurt()
-        {
-            return canHurt; 
         }
 
         public RockSize GetRockSize()
@@ -47,7 +42,7 @@ namespace CaveIn.Spawning
             if (collision.gameObject.CompareTag("Ground"))
             {
                 if (hitSounds.Length != 0) PlaySound(hitSounds);
-                canHurt = false;
+                if(groundHitParticles != null) SpawnParticles(groundHitParticles);
                 StartCoroutine(MuteAudioSource());
                 Destroy(gameObject, timeAfterHit);
             }
@@ -66,9 +61,9 @@ namespace CaveIn.Spawning
             audioSource.volume = 0;
         }
 
-        private void SpawnParticles()
+        private void SpawnParticles(GameObject particlePrefab)
         {
-            GameObject particles = Instantiate(startDeathParticles, transform.position, Quaternion.identity);
+            GameObject particles = Instantiate(particlePrefab, transform.position, Quaternion.identity);
             Destroy(particles, 1.5f);
         }
         private void PlaySound(AudioClip[] audioArray)

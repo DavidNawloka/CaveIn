@@ -23,9 +23,26 @@ namespace CaveIn.Core
 
         private IEnumerator LoadWithFade(int sceneIndex)
         {
+            GameObject backGroundMusic = GameObject.FindGameObjectWithTag("Background");
+            if(backGroundMusic != null)
+            {
+                StartCoroutine(MuteAudioSource(backGroundMusic.GetComponent<AudioSource>()));
+            }
             GetComponent<Animator>().SetTrigger("fadeOut");
             yield return new WaitForSecondsRealtime(1f);
             SceneManager.LoadScene(sceneIndex);
+        }
+        private IEnumerator MuteAudioSource(AudioSource audioSource)
+        {
+            float timer = 0;
+            float startingVolume = audioSource.volume;
+            while (timer <= .8)
+            {
+                audioSource.volume = startingVolume - timer / .8f;
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            audioSource.volume = 0;
         }
     }
 }
