@@ -1,25 +1,3 @@
-using CaveIn.GameplayLoop;
-using CaveIn.UI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace CaveIn.Core
-{
-    public class WinTrigger : MonoBehaviour
-    {
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.tag == "Player")
-            {
-                Win(other);
-            }
-        }
-
-        private static void Win(Collider other)
-        {
-            Miner miner = other.gameObject.GetComponent<Miner>();
-            FindObjectOfType<LevelUI>().Win(miner.GetGoldAmount(), miner.GetMaxGoldAmount());
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:45e6b66b99edda48014f97d3fbc67dd6d2358f06b9c920e29c64560ce5755cdd
+size 601
