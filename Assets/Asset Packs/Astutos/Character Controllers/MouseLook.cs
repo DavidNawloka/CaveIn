@@ -1,3 +1,4 @@
+using CaveIn.Core;
 using CaveIn.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ public class MouseLook : MonoBehaviour
 
         FindObjectOfType<LevelUI>().OnPause.AddListener(Pause);
         FindObjectOfType<LevelUI>().OnUnpause.AddListener(Unpause);
+        sensitivity = FindObjectOfType<ProgressTracker>().sensitivity;
     }
 
     void Update()

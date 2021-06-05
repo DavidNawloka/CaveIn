@@ -10,13 +10,17 @@ namespace CaveIn.UI
 {
     public class MainMenuUI : MonoBehaviour
     {
+        [SerializeField] Slider sensitivitySlider;
         [SerializeField] AudioMixer rocksAudioMixer;
         [SerializeField] Slider rocksAudioSlider;
         [SerializeField] AudioMixer playerAudioMixer;
         [SerializeField] Slider playerAudioSlider;
+        [SerializeField] AudioMixer musicAudioMixer;
+        [SerializeField] Slider musicAudioSlider;
         [SerializeField] TMP_Dropdown qualityDropdown;
         [SerializeField] GameObject[] levelButtons;
 
+        ProgressTracker progressTracker;
         private void Start()
         {
             float volume;
@@ -27,8 +31,14 @@ namespace CaveIn.UI
             rocksAudioSlider.value = volume;
             playerAudioMixer.GetFloat("masterVolume", out volume);
             playerAudioSlider.value = volume;
+            musicAudioMixer.GetFloat("masterVolume", out volume);
+            musicAudioSlider.value = volume;
 
-            FindObjectOfType<ProgressTracker>().UpdateProgress(levelButtons);
+            progressTracker = FindObjectOfType<ProgressTracker>();
+            progressTracker.UpdateProgress(levelButtons);
+
+            sensitivitySlider.value = progressTracker.sensitivity;
+            
         }
         public void SetRocksVolume(float volume)
         {
@@ -46,6 +56,19 @@ namespace CaveIn.UI
             {
                 playerAudioMixer.SetFloat("masterVolume", -80f);
             }
+        }
+        public void SetMusicVolume(float volume)
+        {
+
+            musicAudioMixer.SetFloat("masterVolume", volume);
+            if (volume == -30f)
+            {
+                musicAudioMixer.SetFloat("masterVolume", -80f);
+            }
+        }
+        public void SetSensitivity(float sensitivity)
+        {
+            progressTracker.sensitivity = sensitivity;
         }
         public void SetQuality(int qualityIndex)
         {

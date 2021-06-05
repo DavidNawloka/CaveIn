@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using TMPro;
 using CaveIn.Core;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace CaveIn.UI
 {
@@ -12,8 +13,8 @@ namespace CaveIn.UI
     {
         [SerializeField] GameObject DeathUI;
         [SerializeField] GameObject WinUI;
-        [SerializeField] GameObject TutorialUI;
         [SerializeField] TextMeshProUGUI winGoldText;
+        [SerializeField] Button nextLevelButton;
         [SerializeField] GameObject HUD;
 
 
@@ -26,14 +27,7 @@ namespace CaveIn.UI
         }
         private void Start()
         {
-            if(SceneManager.GetActiveScene().buildIndex == 1 && FindObjectOfType<ProgressTracker>().levelProgress[1] == 0)
-            {
-                Pause();
-            }
-            else
-            {
-                DisableAnythingElse();
-            }
+            DisableAnythingElse();
         }
         public void Death()
         {
@@ -55,6 +49,10 @@ namespace CaveIn.UI
             {
                 progressTracker.levelProgress[(SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings] = 0;
             }
+            else if(nextLevelButton != null)
+            {
+                nextLevelButton.interactable = false;
+            }
             WinUI.SetActive(true);
         }
 
@@ -74,17 +72,16 @@ namespace CaveIn.UI
 
         private void Pause()
         {
-            Time.timeScale = 0;
             OnPause.Invoke();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Time.timeScale = 0;
         }
 
         private void DisableAnythingElse()
         {
             WinUI.SetActive(false);
             DeathUI.SetActive(false);
-            if(TutorialUI != null) TutorialUI.SetActive(false);
             HUD.SetActive(true);
         }
     }

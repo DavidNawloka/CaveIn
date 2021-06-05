@@ -12,6 +12,7 @@ namespace CaveIn.Core
         GameObject[] levelButtonsGameobject;
         int availableLevels;
         [HideInInspector] public Dictionary<int, int> levelProgress = new Dictionary<int, int>(); // -1 = not unlocked, 0 = unlocked, 1-12 gold
+        [HideInInspector] public float sensitivity = 1.5f;
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);

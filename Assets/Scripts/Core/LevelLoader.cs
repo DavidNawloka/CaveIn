@@ -36,9 +36,9 @@ namespace CaveIn.Core
         {
             float timer = 0;
             float startingVolume = audioSource.volume;
-            while (timer <= .8)
+            while (timer <= .5f)
             {
-                audioSource.volume = startingVolume - timer / .8f;
+                audioSource.volume = startingVolume - timer / .5f;
                 timer += Time.deltaTime;
                 yield return null;
             }
