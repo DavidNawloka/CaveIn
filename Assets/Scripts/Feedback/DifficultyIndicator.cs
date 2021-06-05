@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7a64ffe766cd61326e701772eb2457272122f8bfed36683bee65d34a2fd6b70a
-size 939
+using CaveIn.Core;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace CaveIn.Feedback
+{
+    public class DifficultyIndicator : MonoBehaviour
+    {
+        [SerializeField] Transform needle;
+        [SerializeField] float maxRotation;
+
+        GameDifficulty gameDifficulty;
+        Vector3 initialRot;
+        
+
+        private void Awake()
+        {
+            initialRot = needle.localRotation.eulerAngles;
+            gameDifficulty = FindObjectOfType<GameDifficulty>();
+            gameDifficulty.OnDifficultyUpdate.AddListener(UpdateNeedle);
+        }
+
+        private void UpdateNeedle(int currentDifficulty,int maxDifficulty)
+        {
+            Vector3 newRot = new Vector3(initialRot.x + (float)currentDifficulty / (float)maxDifficulty * maxRotation, initialRot.y, initialRot.z);
+            needle.localRotation = Quaternion.Euler(newRot); // TODO: Smooth it
+        }
+
+        
+    }
+}

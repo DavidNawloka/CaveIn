@@ -1,3 +1,23 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ee1f83147b2915d62a92095e8b10a287e4a6d756276ece65ddb5b1b6b8d5cc4b
-size 629
+	
+
+	Particle Pack (1.1)
+
+	by Kenney Vleugels (Kenney.nl)
+
+	Additional credit for creating filter templates:
+	Indigo Ray, Craig Nisbet, Zoltan Erdokovy, Heliagon, ThreeDee, Killst4r and Tim2501
+
+			------------------------------
+
+	License (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+	You may use these assets in personal and commercial projects.
+	Credit (Kenney or www.kenney.nl) would be nice but is not mandatory.
+
+			------------------------------
+
+	Donate:   http://support.kenney.nl
+	Request:  http://request.kenney.nl
+
+	Follow on Twitter for updates: @KenneyNL (www.twitter.com/kenneynl)

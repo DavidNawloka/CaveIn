@@ -1,3 +1,48 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:76da21753cbc0fb58e4454996d97b045ec3290c066a2b7a56c6140fe132b071c
-size 1512
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace CaveIn.Core
+{
+    public class LevelLoader : MonoBehaviour
+    {
+
+        public void LoadScene(int sceneIndex)
+        {
+            StartCoroutine(LoadWithFade(sceneIndex));
+        }
+        public void ReloadCurrentScene()
+        {
+            StartCoroutine(LoadWithFade(SceneManager.GetActiveScene().buildIndex));
+        }
+        public void LoadNextLevel()
+        {
+            StartCoroutine(LoadWithFade(SceneManager.GetActiveScene().buildIndex+1));
+        }
+
+        private IEnumerator LoadWithFade(int sceneIndex)
+        {
+            GameObject backGroundMusic = GameObject.FindGameObjectWithTag("Background");
+            if(backGroundMusic != null)
+            {
+                StartCoroutine(MuteAudioSource(backGroundMusic.GetComponent<AudioSource>()));
+            }
+            GetComponent<Animator>().SetTrigger("fadeOut");
+            yield return new WaitForSecondsRealtime(1f);
+            SceneManager.LoadScene(sceneIndex);
+        }
+        private IEnumerator MuteAudioSource(AudioSource audioSource)
+        {
+            float timer = 0;
+            float startingVolume = audioSource.volume;
+            while (timer <= .8)
+            {
+                audioSource.volume = startingVolume - timer / .8f;
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            audioSource.volume = 0;
+        }
+    }
+}
